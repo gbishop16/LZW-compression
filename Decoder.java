@@ -6,9 +6,16 @@ public class Decoder {
 		BufferedReader br=new BufferedReader(encoded);
 		ArrayList<Integer> codes=new ArrayList<Integer>;
 		int temp;
+		String nums;
 		while ((temp=br.read())!=-1){
-			codes.add(temp);
+			if (!br.read().equals(" ")){
+				nums+=(String)temp;
+			}else{
+				codes.add((int)nums);
+				nums="";
+			}
 		}
+		codes.add((int)nums);
 		br.close();
 		String output="";
 		for (int i=0;i<codes.size();i++){
