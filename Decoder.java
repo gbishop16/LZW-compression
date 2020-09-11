@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+import java.util.*;
+import java.io.*;
 
 public class Decoder {
-	public void decodeFile(ArrayList<Integer> codes) {
-		//code here
+	public void decodeFile(File encoded) {
+		
 	}
 }
