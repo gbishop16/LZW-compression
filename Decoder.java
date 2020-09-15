@@ -3,20 +3,21 @@ import java.io.*;
 
 public class Decoder {
 	public void decodeFile(File encoded) throws IOException {
-		BufferedReader br=new BufferedReader(encoded);
+		BufferedReader br=new BufferedReader(new FileReader(encoded));
 		ArrayList<Integer> codes=new ArrayList<Integer>();
 		int temp;
+		int c=0;
 		String nums;
 		while ((temp=br.read())!=-1){
 			if (!br.read().equals(" ")){
-				nums+=(String)temp;
-				codes.add((int)nums);
+				nums+=(char)temp;
+				codes.add(c=Integer.parseInt(nums));
 				nums="";		
 			}else{
-				nums+=(String)temp;
+				nums+=(char)temp;
 			}
 		}
-		codes.add((int)nums);
+		codes.add(c=Integer.parseInt(nums));
 		br.close();
 		String output="";
 		for (int i=0;i<codes.size();i++){
