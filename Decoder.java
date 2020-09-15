@@ -4,15 +4,16 @@ import java.io.*;
 public class Decoder {
 	public void decodeFile(File encoded) throws IOException {
 		BufferedReader br=new BufferedReader(encoded);
-		ArrayList<Integer> codes=new ArrayList<Integer>;
+		ArrayList<Integer> codes=new ArrayList<Integer>();
 		int temp;
 		String nums;
 		while ((temp=br.read())!=-1){
 			if (!br.read().equals(" ")){
 				nums+=(String)temp;
-			}else{
 				codes.add((int)nums);
-				nums="";
+				nums="";		
+			}else{
+				nums+=(String)temp;
 			}
 		}
 		codes.add((int)nums);
