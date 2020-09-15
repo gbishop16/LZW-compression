@@ -9,7 +9,7 @@ public class Decoder {
 		int c=0;
 		String nums;
 		while ((temp=br.read())!=-1){
-			if (!br.read().equals(" ")){
+			if (br.read()==32){
 				nums+=(char)temp;
 				codes.add(c=Integer.parseInt(nums));
 				nums="";		
@@ -23,7 +23,7 @@ public class Decoder {
 		for (int i=0;i<codes.size();i++){
 			output+=dictionary.get(codes.get(i));
 		}
-		BufferedWriter bw=new BufferedWriter(new FileWriter());
+		BufferedWriter bw=new BufferedWriter(new FileWriter("decodedFile.txt"));
 		bw.append(output);
 		bw.close();
 	}
