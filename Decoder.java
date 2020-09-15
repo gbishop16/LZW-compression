@@ -10,9 +10,10 @@ public class Decoder {
 		while ((temp=br.read())!=-1){
 			if (!br.read().equals(" ")){
 				nums+=(String)temp;
-			}else{
 				codes.add((int)nums);
-				nums="";
+				nums="";		
+			}else{
+				nums+=(String)temp;
 			}
 		}
 		codes.add((int)nums);
