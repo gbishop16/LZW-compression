@@ -9,8 +9,7 @@ public class Decoder {
 		int c=0;
 		String nums;
 		while ((temp=br.read())!=-1){
-			if (br.read()==32){
-				nums+=(char)temp;
+			if (temp=32){
 				codes.add(c=Integer.parseInt(nums));
 				nums="";		
 			}else{
