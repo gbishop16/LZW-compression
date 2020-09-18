@@ -8,7 +8,6 @@ public class Encoder {
 	public ArrayList<Integer> encodeFile(String fileName) {
 		return generateCodestream(fileName, initializeDictionary());
 	}
-
 	private HashMap<String, Integer> initializeDictionary() {
 		//512 for 9 bit encoding
 		
@@ -21,7 +20,7 @@ public class Encoder {
 		return dictionary;
 	}
 	
-	private ArrayList<Integer> generateCodestream(String fileToEncode, HashMap<String, Integer> dictionary) {
+	public ArrayList<Integer> generateCodestream(String fileToEncode, HashMap<String, Integer> dictionary) {
 		ArrayList<Integer> codestream = new ArrayList<Integer>();
 		String p = "";
 		//change to 257 for EOF marker
@@ -57,7 +56,19 @@ public class Encoder {
 					//P = C
 					p = Character.toString(c);
 				}
+				//ends the encoded values with indicated z, starts the dictionary,separates them with spaces
+				bw.write("z");
+				//writes dictionary into file, with : to separate the index from the string
+				for (String key : dictionary.keySet())
+				{
+					bw.write(dictionary.get(key) + "$" + key.length() + "#"+key);
+					
+				}
 			}
+			
+			
+				
+				
 			
 			br.close();
 			
@@ -67,4 +78,18 @@ public class Encoder {
 		
 		return codestream;
 	}
+	//tester
+	public static void main(String[]args) throws IOException //runs it
+	{
+		Encoder en = new Encoder();
+		BufferedReader br = new BufferedReader(new FileReader("LZW.txt"));
+		int temp;
+		String input="";
+		while ((temp=br.read())!=-1){
+			input+=(char)temp;
+		}
+		en.encodeFile(input);
+		
+	}
+	
 }
